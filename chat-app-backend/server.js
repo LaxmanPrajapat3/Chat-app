@@ -9,6 +9,7 @@ const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const messageRoutes = require('./routes/messageRoutes');
 const Message = require('./models/Message');
+
 require('dotenv').config(); 
 
 const app = express();
