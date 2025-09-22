@@ -8,4 +8,7 @@ const messageSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('Message', messageSchema);
+// module.exports = mongoose.model('Message', messageSchema);
+const Message = mongoose.models.Message || mongoose.model("Message", messageSchema);
+
+module.exports=Message;

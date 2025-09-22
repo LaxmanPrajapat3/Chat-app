@@ -9,12 +9,13 @@ const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const messageRoutes = require('./routes/messageRoutes');
 const Message = require('./models/message');
+require('dotenv').config(); 
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: '*' } });
 
-mongoose.connect('mongodb://127.0.0.1:27017/mern-chat', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'));
 
 app.use(cors());
@@ -50,4 +51,4 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => console.log('User disconnected'));
 });
 
-server.listen(5000, () => console.log('Server running on 5000'));
+server.listen(process.env.PORT, () => console.log('Server running on 5000'));

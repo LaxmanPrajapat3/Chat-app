@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useState, useContext } from "react";
 import { io } from "socket.io-client";
 import axios from "axios";
@@ -52,22 +54,52 @@ export default function Chat({ selectedUser }) {
   };
 
   return (
-    <div>
-      <h3>Chat with {selectedUser?.name}</h3>
-      <div style={{ height: "200px", overflowY: "scroll", border: "1px solid gray" }}>
+    <div className="flex flex-col h-screen bg-gray-50 flex-1">
+      {/* Chat Header */}
+      <div className="bg-purple-600 text-white px-4 py-3 shadow-md">
+        <h3 className="text-lg font-semibold">
+          Chat with {selectedUser?.name || "User"}
+        </h3>
+      </div>
+
+      {/* Messages Area */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-2">
         {messages.map((msg, i) => (
-          <div key={i} style={{ textAlign: msg.from === user._id ? "right" : "left" }}>
-            {msg.message}
+          <div
+            key={i}
+            className={`flex ${
+              msg.from === user._id ? "justify-end" : "justify-start"
+            }`}
+          >
+            <div
+              className={`max-w-xs px-4 py-2 rounded-lg shadow ${
+                msg.from === user._id
+                  ? "bg-purple-600 text-white"
+                  : "bg-gray-200 text-gray-800"
+              }`}
+            >
+              {msg.message}
+            </div>
           </div>
         ))}
       </div>
-      <input
-        type="text"
-        value={newMsg}
-        onChange={(e) => setNewMsg(e.target.value)}
-        placeholder="Type a message"
-      />
-      <button onClick={sendMessage}>Send</button>
+
+      {/* Input Box */}
+      <div className="flex items-center border-t border-gray-300 p-3 bg-white">
+        <input
+          type="text"
+          value={newMsg}
+          onChange={(e) => setNewMsg(e.target.value)}
+          placeholder="Type a message..."
+          className="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
+        />
+        <button
+          onClick={sendMessage}
+          className="ml-3 bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition duration-300"
+        >
+          Send
+        </button>
+      </div>
     </div>
   );
 }
