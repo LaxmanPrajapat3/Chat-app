@@ -13,10 +13,7 @@ export default function App() {
 
   return (
     <Router>
-      {/* <nav>
-        <Link to="/login">Login</Link> | <Link to="/signup">Signup</Link> |{" "}
-        {user && <button onClick={logout}>Logout</button>}
-      </nav> */}
+     
  <nav className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white px-6 py-3 flex justify-between items-center shadow-lg">
       {/* Logo / Brand */}
       <div className="text-lg font-bold tracking-wide">ChatApp</div>
