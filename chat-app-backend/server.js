@@ -8,7 +8,7 @@ const { Server } = require('socket.io');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const messageRoutes = require('./routes/messageRoutes');
-const Message = require('../models/message');
+const Message = require('../chat-app-backend/models/message');
 require('dotenv').config(); 
 
 const app = express();
